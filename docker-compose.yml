@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  moodle-db:
+    image: mariadb:10.6
+    container_name: moodle-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: moodleroot
+      MYSQL_DATABASE: moodle
+      MYSQL_USER: moodleuser
+      MYSQL_PASSWORD: moodlepass
+    volumes:
+      - moodle_db_data:/var/lib/mysql
+    networks:
+      - moodle-net
+
+  moodle:
+    image: php:7.4-apache
+    container_name: moodle
+    ports:
+      - "80:80"
+    volumes:
+      - ./moodle_files:/var/www/html
+    depends_on:
+      - moodle-db
+    networks:
+      - moodle-net
+
+volumes:
+  moodle_db_data:
+
+networks:
+  moodle-net:
+    driver: bridge
