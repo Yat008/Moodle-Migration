@@ -37,7 +37,7 @@ services:
     container_name: moodle-phpmyadmin-v1
     restart: always
     ports:
-      - "${PHPMYADMIN_PORT}:80"
+      - "${PHPMYADMIN_PORT}:88"
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
