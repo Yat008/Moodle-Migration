@@ -1,2 +1,2 @@
 # Moodle-Migration
-In diese Repository wird der Code für unsere Moodle-Migration.
+In diesem Repository wird der Code für unsere Moodle-Migration bereitgestellt.
