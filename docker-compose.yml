@@ -1,35 +1,54 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  moodle-db:
+  db:
     image: mariadb:10.6
-    container_name: moodle-db
+    container_name: moodle-db-v1
     restart: always
+    env_file: .env
     environment:
-      MYSQL_ROOT_PASSWORD: moodleroot
-      MYSQL_DATABASE: moodle
-      MYSQL_USER: moodleuser
-      MYSQL_PASSWORD: moodlepass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - moodle_db_data:/var/lib/mysql
+      - ./db/data:/var/lib/mysql
+      - ./db/moodle.sql:/docker-entrypoint-initdb.d/moodle.sql
     networks:
-      - moodle-net
+      - moodle_network
 
   moodle:
-    image: php:7.4-apache
-    container_name: moodle
+    build: ./moodle
+    container_name: moodle-app-v1
+    restart: always
     ports:
-      - "80:80"
+      - "${MOODLE_PORT}:80"
     volumes:
-      - ./moodle_files:/var/www/html
+      - moodle_app_data:/var/www/html
+      - ./moodle/moodledata:/var/www/moodledata
+      - ./moodle/config.php:/var/www/html/config.php 
     depends_on:
-      - moodle-db
+      - db
     networks:
-      - moodle-net
+      - moodle_network
 
-volumes:
-  moodle_db_data:
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: moodle-phpmyadmin-v1
+    restart: always
+    ports:
+      - "${PHPMYADMIN_PORT}:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - db
+    networks:
+      - moodle_network
 
 networks:
-  moodle-net:
-    driver: bridge
+  moodle_network:
+    external: false
+
+volumes:
+  moodle_app_data:
