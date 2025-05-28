@@ -13,7 +13,7 @@ services:
     volumes:
       - ./data/db:/var/lib/mysql
     networks:
-      - moodle-net
+      - moodle-old-net
 
   moodle:
     build: ./docker/moodle
