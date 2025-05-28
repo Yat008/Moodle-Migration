@@ -15,7 +15,7 @@ services:
       - ./db/data:/var/lib/mysql
       - ./db/moodle.sql:/docker-entrypoint-initdb.d/moodle.sql
     networks:
-      - moodle_network
+      - moodle-new-net
 
   moodle:
     build: ./moodle
@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
     networks:
-      - moodle_network
+      - moodle-new-net
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -44,7 +44,7 @@ services:
     depends_on:
       - db
     networks:
-      - moodle_network
+      - moodle-new-net
 
 networks:
   moodle_network:
