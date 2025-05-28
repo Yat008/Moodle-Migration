@@ -21,6 +21,7 @@ git clone https://github.com/Yat008/Moodle-Migration.git
 ```bash
 cd Moodle-Migration/moodle-old
 chmod +x import-data.sh
+./import-data.sh
 docker-compose up -d --build
 ```
 
