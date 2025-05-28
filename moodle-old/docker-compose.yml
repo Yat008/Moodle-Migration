@@ -11,7 +11,7 @@ services:
       MYSQL_USER: moodleuser
       MYSQL_PASSWORD: moodlepass
     volumes:
-      - ./data/db-alt:/var/lib/mysql
+      - ./data/db-old:/var/lib/mysql
     networks:
       - alt-moodle-net
 
@@ -24,8 +24,8 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./wwwroot-alt:/var/www/html
-      - ./data/moodledata-alt:/var/moodledata
+      - ./wwwroot-old:/var/www/html
+      - ./data/moodledata-old:/var/moodledata
     networks:
       - alt-moodle-net
 
