@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Quellen (lokal)
-SRC_WWWROOT=~/var/www/html
-SRC_MOODLEDATA=~var/www/moodledata
+SRC_WWWROOT=/var/www/html
+SRC_MOODLEDATA=/var/www/moodledata
 
 # Ziele
 DEST_DIR=./moodle-old
