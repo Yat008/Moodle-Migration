@@ -1,6 +1,6 @@
 # Anleitung zur Realisierung
 
-## 2. Upgrade und Installation (Ubuntu/Linux)
+## 1. Upgrade und Installation (Ubuntu/Linux)
 
 ```bash
 sudo apt update
