@@ -9,7 +9,7 @@ services:
       MYSQL_ROOT_PASSWORD: vaIdfgRPSXzKbPPd
       MYSQL_DATABASE: moodle
       MYSQL_USER: moodleuser
-      MYSQL_PASSWORD: moodlepass
+      MYSQL_PASSWORD: vaIdfgRPSXzKbPPd
     volumes:
       - ./data/db-old:/var/lib/mysql
     networks:
